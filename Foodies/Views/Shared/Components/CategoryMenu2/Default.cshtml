@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Category>
+
+
+<div>
+    @foreach (var category in Model)
+    {
+        if (category.CategoryName == "Vegeterian")
+        {
+            <a asp-controller="FoodItem" asp-action="CategoryFilter"
+               asp-route-category="@category.CategoryName" class="btn btn-success">@category.CategoryName</a>
+
+        }
+    }
+
+    <a class="btn btn-danger">Non Veg</a>
+    <a class="btn btn-info">Egg</a>
+
+</div>

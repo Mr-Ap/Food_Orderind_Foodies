@@ -1,0 +1,62 @@
+﻿@model FoodListViewModel
+
+@*@await Component.InvokeAsync("CategoryMenu")*@
+
+@*<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Enter Food Name" value="@ViewData["GetFoodItems"]"
+               name="FoodSearch" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+</form>
+*@
+
+<div class="jumbotron text-white" style="background-image: url('/Images/slider4.jfif'); background-repeat: no-repeat; background-size:cover; ">
+    <h1 class="display-4">Craving For <b>Hotel ka Khana?</b></h1>
+    <p class="lead">Don't Worry! Order from Foodies!</p>
+    <hr class="my-4">
+    <p>We Will Deliver Your Favourite Food at Your Door in Just 30 Minutes..!</p>
+    <a class="btn btn-primary btn-lg" asp-controller="Home" asp-action="Index" role="button">Check Offers.!</a>
+</div>
+
+
+<section class="py-2">
+    <div class="container px-4 px-lg-5 mt-5" >
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 mb-2"style="justify-content:space-between">
+            <div>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter" asp-route-category="Vegeterian" class="btn btn-success fw-normal">Veg</a>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter" asp-route-category="Non-Vegeterian" class="btn btn-danger fw-normal">Non Veg</a>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter" asp-route-category="Eggterian" class="btn btn-info fw-normal">Egg</a>
+
+            </div>
+            <div>
+                <form method="get" asp-action="Index" style=" display:flex";>
+
+                        <input type="search" placeholder="Enter Food Name" value="@ViewData["GetFoodItems"]"
+                               name="FoodSearch" style="justify-content:space-evenly"/>&nbsp;
+                        <input type="submit" value="Search" class="btn btn-primary" />
+
+                </form>
+             </div>
+
+        </div>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+            @foreach (var dish in Model.FoodItems)
+            {
+                <partial name="_FoodItemCard" model="dish" />
+
+            }
+        </div>
+        </div>
+</section>
+
+@*
+            <div class="row" style="margin:40px">
+
+                @foreach (var dish in Model.FoodItems)
+                {
+                    <partial name="_FoodItemCard" model="dish" />
+
+                }
+
+            </div>*@

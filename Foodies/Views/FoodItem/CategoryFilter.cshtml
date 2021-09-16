@@ -1,0 +1,53 @@
+﻿@model FoodListViewModel
+
+@*@await Component.InvokeAsync("CategoryMenu")*@
+
+@*<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Enter Food Name" value="@ViewData["GetFoodItems"]"
+               name="FoodSearch" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+</form>*@
+
+<section class="py-2">
+    <div class="container px-4 px-lg-5 mt-5">
+
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 mb-2" style="justify-content:space-between">
+            <div>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter" asp-route-category="Vegeterian" class="btn btn-success fw-normal">Veg</a>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter" asp-route-category="Non-Vegeterian" class="btn btn-danger fw-normal">Non Veg</a>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter" asp-route-category="Eggterian" class="btn btn-info fw-normal">Egg</a>
+
+            </div>
+            <div>
+                <form method="get" asp-action="Index" style=" display:flex" ;>
+
+                    <input type="search" placeholder="Enter Food Name" value="@ViewData["GetFoodItems"]"
+                           name="FoodSearch" style="justify-content:space-evenly" />&nbsp;
+                    <input type="submit" value="Search" class="btn btn-primary" />
+
+                </form>
+            </div>
+
+        </div>
+
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+            @foreach (var dish in Model.FoodItems)
+            {
+                <partial name="_FoodItemCard" model="dish" />
+
+            }
+        </div>
+    </div>
+</section>
+
+@*<div class="row" style="margin:40px">
+
+    @foreach (var dish in Model.FoodItems)
+    {
+        <partial name="_FoodItemCard" model="dish" />
+
+    }
+
+</div> *@

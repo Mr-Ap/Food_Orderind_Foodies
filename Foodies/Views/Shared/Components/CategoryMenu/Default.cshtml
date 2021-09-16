@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<Category>
+
+    <li class="nav-item dropdown">
+        <a asp-controller="FoodItem" asp-action="Index" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a asp-controller="FoodItem" asp-action="CategoryFilter"
+                       asp-route-category="@category.CategoryName" class="dropdown-item">@category.CategoryName</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+            }
+            <li>
+                <a asp-controller="FoodItem" asp-action="Index" asp-route-category="" class="dropdown-item">All FoodItems</a>
+            </li>
+        </ul>
+    </li>
+
+@*<li class="dropdown">
+    <a asp-controller="FoodItem" asp-action="Index" class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @foreach (var category in Model)
+        {
+            <li>
+                <a asp-controller="FoodItem" asp-action="CategoryFilter"
+                   asp-route-category="@category.CategoryName">@category.CategoryName</a>
+            </li>
+
+
+        }
+        <li>
+            <a asp-controller="FoodItem" asp-action="Index" asp-route-category="">View All FoodItems</a>
+        </li>
+    </ul>
+</li>*@
+
+
+@*<div class="row">
+    <h5><span>Categories</span></h5>
+    @foreach (var category in Model)
+    {
+        <div class="col-sm-3">
+            <div class="card bg-dark text-white">
+                <img src="/Images/background.jpg" class="card-img" alt="Background">
+                <div class="card-img-overlay centered">
+                    <h5 class="card-title">
+                        <a asp-controller="Fooditem" asp-action="CategoryFilter" asp-route-category="@category.CategoryName">
+                            @category.CategoryName
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>*@
+
+    
