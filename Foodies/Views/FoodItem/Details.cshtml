@@ -1,0 +1,85 @@
+﻿@model FoodItem
+@*<h2>@Model.FoodName</h2>*@
+
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="col-md-6">
+        @*<img src="~/Images/background.jpg"/>*@
+        @*On above image add below class*@
+        <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.FoodName" />
+            <!-- Product details-->
+            <div class="card-body p-4">
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">@Model.FoodName</h5>
+                    <!-- Product reviews-->
+@*                    <div class="d-flex justify-content-center small text-warning mb-2">
+                        <div class="bi-star-fill"></div>
+                        <div class="bi-star-fill"></div>
+                        <div class="bi-star-fill"></div>
+                        <div class="bi-star-fill"></div>
+                        <div class="bi-star-fill"></div>
+                    </div>*@
+
+                    <p class="card-text">@Model.FoodDescription</p>
+                    <!-- Product price-->
+                    @Model.Price
+                </div>
+            </div>
+            <!-- Product actions-->
+
+            @if (@Model.IsAvailable)
+            {
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId" class="btn btn-outline-dark mt-auto">Add to cart</a></div>
+                </div>
+            }
+            else
+            {
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId" class="btn btn-outline-dark mt-auto disabled">Add to cart</a></div>
+                </div>
+            }
+
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a asp-controller="FoodItem" asp-action="Index" class="btn btn-outline-dark mt-auto">Go To Menu</a></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@*<div class="container">
+        <div class="col-md-6 align-items-center">
+            <img alt="@Model.FoodName" src="@Model.ImageUrl" class="img-thumbnail" />
+            <div class="caption-full">
+
+                <h3>@Model.FoodName</h3>
+                <h4>@Model.FoodDescription</h4>
+                <h4 class="pull-right">@Model.Price</h4>
+
+            </div>
+            @if (@Model.IsAvailable)
+            {
+                <a class="lnk btn btn-success btn-block mt-2"
+                   asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId">
+                    Add To Cart
+                </a>
+            }
+            else
+            {
+                <a class="lnk btn btn-success btn-block mt-2 disabled"
+                   asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId">
+                    Add To Cart
+                </a>
+            }
+
+            <a class="lnk btn btn-success btn-block mt-2"
+               asp-controller="FoodItem" asp-action="Index">
+                Go to Menu
+            </a>
+        </div>
+    </div>*@
+

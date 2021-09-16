@@ -1,0 +1,114 @@
+﻿@model FoodItem
+
+
+@*Uncommnet This*@
+@*<div class="col-sm-3">
+    <div class="card-deck">
+        <div class="card shadow">
+            <a asp-controller="Fooditem" asp-action="Details" asp-route-id="@Model.FoodId">
+                <img class="card-img-top img-thumbnail" src="@Model.ImageUrl" />
+            </a>
+            <div class="card-body">
+                <a asp-controller="Fooditem" asp-action="Details" asp-route-id="@Model.FoodId">
+                    <h5 class="card-title">
+                        @Model.FoodName
+                    </h5>
+                </a>
+                <p class="card-text">@Model.Price</p>
+                <p class="card-text">@Model.FoodDescription</p>
+            </div>
+            <div class="card-footer">
+                <a class="lnk btn btn-success btn-block"
+                   asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId">
+                    Add To Cart
+                </a>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+<div class="col mb-5">
+    <div class="card h-100">
+        <!-- Product image-->
+        <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.FoodName" />
+        <!-- Product details-->
+        <div class="card-body p-2" style="background-color:lightcyan;">
+            <div class="text-center">
+                <!-- Product name-->
+                <a asp-controller="FoodItem" asp-action="Details" asp-route-id="@Model.FoodId"><h5 class="fw-bolder">@Model.FoodName</h5></a>
+                <!-- Product reviews-->
+                <div class="d-flex justify-content-center small text-warning mb-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    @*<div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>*@
+                </div>
+
+                <p class="card-text">@Model.FoodDescription</p>
+                <!-- Product price-->
+                <p><i class="fas fa-rupee-sign"></i>@Model.Price</p>
+            </div>
+        </div>
+        <!-- Product actions-->
+        <div style="display:flex; justify-content:center; background-color:lightcyan;">
+            <div class="card-footer p-1 pt-0 border-top-0 bg-transparent" style="display:inline">
+                <div class="text-center"><a asp-controller="FoodItem" asp-action="Details" asp-route-id="@Model.FoodId" class="btn btn-outline-dark mt-auto">View</a></div>
+            </div>
+            @if (@Model.IsAvailable)
+            {
+                <div class="card-footer p-1 pt-0 border-top-0 bg-transparent"style="display:inline">
+                    <div class="text-center"><a asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId" class="btn btn-outline-dark mt-auto">Add to cart</a></div>
+                </div>
+            }
+            else
+            {
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" style="display:inline">
+                    <div class="text-center"><a asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId" class="btn btn-outline-dark mt-auto disabled">Add to cart</a></div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@*<div class="col-sm-3">
+        <div class="card-deck">
+            <div class="card shadow">
+                <a asp-controller="Fooditem" asp-action="Details" asp-route-id="@Model.FoodId">
+                    <img class="card-img-top img-thumbnail" src="@Model.ImageUrl" />
+                </a>
+                <div class="card-body">
+                    <a asp-controller="Fooditem" asp-action="Details" asp-route-id="@Model.FoodId">
+                        <h5 class="card-title">
+                            @Model.FoodName
+                        </h5>
+                    </a>
+
+                    <h5 class="pull-right">@Model.Price</h5>
+
+                    <p class="card-text">
+                        &ldquo; @Model.FoodDescription &rdquo;
+                    </p>
+                    <a class="lnk btn btn-success btn-block"
+                       asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@Model.FoodId">
+                        Add To Cart
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>*@

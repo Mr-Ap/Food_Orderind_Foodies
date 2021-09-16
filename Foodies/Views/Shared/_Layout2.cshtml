@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - Foodies</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    @*    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+
+    @*@Styles.Render("~/Content/fontawesome")*@
+    @*<link href="~/css/style.css" rel="stylesheet" />*@
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+    @*NavBar*@
+    <nav class="navbar navbar-expand-lg navbar-light" style="border-bottom:1px solid black; margin-bottom:5px;">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/foodies.jpeg" style="height:50px" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" asp-area="" asp-controller="FoodItem" asp-action="Index">Home</a></li>
+                   @* <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About</a></li>*@
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            </ul>
+                        </li>*@
+
+                    @await Component.InvokeAsync("CategoryMenu")
+                </ul>
+
+                @await Component.InvokeAsync("ShoppingCartIcon")
+
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="bg-dark">
+        <div class="container py-5">
+            <div class="row py-3">
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="text-uppercase font-weight-bold mb-4 text-white">About</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Contact" class="text-muted">Contact Us</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="About" class="text-muted">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Stories</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Press</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="text-uppercase font-weight-bold mb-4 text-white">Help</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-muted">Payments</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Shipping</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Cancellation</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="text-uppercase font-weight-bold mb-4 text-white">Policy</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-muted">Return Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Terms Of Use</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Security</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="text-uppercase font-weight-bold mb-4 text-white">Company</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a asp-area="Identity" asp-page="/Account/Login" class="text-muted">Login</a></li>
+                        <li class="mb-2"><a asp-area="Identity" asp-page="/Account/Register" class="text-muted">Register</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Sitemap</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-lg-0">
+                    <h6 class="text-uppercase font-weight-bold mb-4 text-white">Registered Office Address</h6>
+                    <p class="text-muted mb-4">Foodies, Near FoodMall, Kolhapur MH IN</p> 
+                    <p class="text-muted mb-4">
+                        Phone : +91 9876543210
+                        Email: <a href="#">Foodies@gmail.com</a>
+                    </p>
+                    <ul class="list-inline mt-4">
+                        <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fab fa-2x fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fab fa-2x fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fab fa-2x fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fab fa-2x fa-youtube"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fab fa-2x fa-google"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="p-0 m-0 b-0">
+        <div class="bg-light py-2">
+            <div class="container text-center">
+                <p class="text-muted mb-0 py-2">© 2021 Foodies All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/ba584de638.js" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

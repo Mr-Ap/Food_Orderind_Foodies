@@ -1,0 +1,75 @@
+﻿@model ShoppingCartViewModel
+
+<div style="padding-top:50px">
+    <h2>Here's Your Shopping Cart!</h2>
+    <h3>Order The Food</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Fooditem Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-left">
+                        @item.FoodItem.FoodName
+                    </td>
+                    <td class="text-right">
+                        @item.FoodItem.Price
+                    </td>
+                    <td class="text-center"> <a class="btn btn-success" asp-controller="ShoppingCart" asp-action="AddtoShoppingCart" asp-route-fooditemid="@item.FoodItem.FoodId">+</a> @item.Quantity <a class="btn btn-success" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-fooditemid="@item.FoodItem.FoodId">-</a></td>
+                    <td class="text-right"><i class="fas fa-rupee-sign"></i>@((item.Quantity * item.FoodItem.Price).ToString())</td>
+                
+                    @*@if (item.FoodItem.HasDiscount)
+                    {
+                        <td class="text-right"><i class="fas fa-rupee-sign"></i>@(((90 * item.Quantity * item.FoodItem.Price) / 100).ToString())</td>
+                    }
+                    else
+                    {
+                        <td class="text-right"><i class="fas fa-rupee-sign"></i>@((item.Quantity * item.FoodItem.Price).ToString())</td>
+                    }*@
+                </tr>
+
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    <i class="fas fa-rupee-sign"></i>@Model.ShoppingCartTotal.ToString()
+                </td>
+            </tr>
+        
+
+            <tr>
+                <td>
+                    <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="ClearCart">Clear Cart</a>
+                </td>
+                @if (Model.ShoppingCartTotal <= 0)
+                {
+                    <td colspan="3" class="text-right">
+                        <a class="btn btn-primary disabled" asp-controller="Register" asp-action="Index">Check out now!</a>
+                        <a class="btn btn-primary" asp-controller="FoodItem" asp-action="Index">Add other dishes!</a>
+                    </td>
+                }
+                else
+                {
+                    <td colspan="3" class="text-right">
+                        <a class="btn btn-success" asp-controller="Register" asp-action="Index">Check out now!</a><span></span>
+                        <a class="btn btn-primary" asp-controller="FoodItem" asp-action="Index">Add other dishes!</a>
+                    </td>
+                }
+
+            </tr>
+        </tfoot>
+
+    </table>
+
+
+</div>
